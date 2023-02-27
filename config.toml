@@ -1,0 +1,12 @@
+[replicate]
+url = "https://api.replicate.com/v1/predictions"
+token = "787c600f06e8f674725b45dee573067a27c04d4d"
+version = "7de2ea26c616d5bf2245ad0d5e24f0ff9a6204578a5c876db53142edd9d2cd56"
+
+[imgur]
+url = "https://api.imgur.com/3/image"
+id = "f323475ec21f19a"
+
+[line]
+secret = "559040c311a3f91b28cebd40f9b03e51"
+token = "VdIuljt6gLDsvXs7gA4eVoQlfq0RqivFdE37de7xY6gmBw9T9my5sVYQY/OQi9W9pptsma1/chjm7PuW1/hpyFLMPHSc42OtsgnX6kn1+ZcyZZSQMpvlKdPl+8ekVrNFgN1bMhu00kvy7ZZjuQsY0gdB04t89/1O/w1cDnyilFU="
