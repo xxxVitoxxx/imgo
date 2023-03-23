@@ -1,0 +1,13 @@
+[replicate]
+url = "https://api.replicate.com/v1/predictions"
+token = "{your token}"
+version = "{model version}"
+callback = "{server URL}/replicate/callback"
+
+[imgur]
+url = "https://api.imgur.com/3/image"
+id = "{your client ID}"
+
+[line]
+secret = "{your secret}"
+token = "{your token}"
