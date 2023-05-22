@@ -1,0 +1,10 @@
+version: "3"
+services:
+  imgo:
+    build:
+      context: .
+    image: imgo:latest
+    ports:
+      - "80:8090"
+    volumes:
+      - ${PWD}/config.toml:/app/config.toml
