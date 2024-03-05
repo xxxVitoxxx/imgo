@@ -11,3 +11,9 @@ id = "{your client ID}"
 [line]
 secret = "{your secret}"
 token = "{your token}"
+
+[redis]
+user = "default"
+password = ""
+address = "localhost"
+db = "0"
