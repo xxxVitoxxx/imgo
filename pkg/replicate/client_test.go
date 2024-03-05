@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/xxxVitoxxx/imgo/replicate"
+	"github.com/xxxVitoxxx/imgo/pkg/replicate"
 )
 
 func TestCreatePrediction(t *testing.T) {

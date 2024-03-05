@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"github.com/xxxVitoxxx/imgo/imgur"
+	"github.com/xxxVitoxxx/imgo/pkg/imgur"
 )
 
 func TestUploadImage(t *testing.T) {
