@@ -12,9 +12,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
-	"github.com/xxxVitoxxx/imgo/imgur"
-	"github.com/xxxVitoxxx/imgo/line"
-	"github.com/xxxVitoxxx/imgo/replicate"
+	"github.com/xxxVitoxxx/imgo/pkg/imgur"
+	"github.com/xxxVitoxxx/imgo/pkg/line"
+	"github.com/xxxVitoxxx/imgo/pkg/replicate"
 )
 
 type config struct {

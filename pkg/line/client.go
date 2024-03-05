@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/line/line-bot-sdk-go/v7/linebot"
-	"github.com/xxxVitoxxx/imgo/imgur"
-	"github.com/xxxVitoxxx/imgo/replicate"
+	"github.com/xxxVitoxxx/imgo/pkg/imgur"
+	"github.com/xxxVitoxxx/imgo/pkg/replicate"
 )
 
 type lineBot struct {
