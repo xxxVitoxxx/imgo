@@ -17,3 +17,8 @@ user = "default"
 password = ""
 address = "localhost"
 db = "0"
+
+[rabbitmq]
+user = "guest"
+password = "guest"
+address = "localhost"
