@@ -11,50 +11,14 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
+	"github.com/xxxVitoxxx/imgo/internal/config"
 	"github.com/xxxVitoxxx/imgo/pkg/imgur"
 	"github.com/xxxVitoxxx/imgo/pkg/line"
 	"github.com/xxxVitoxxx/imgo/pkg/replicate"
 )
 
-type config struct {
-	Replicate Replicate `toml:"replicate"`
-	Imgur     Imgur     `toml:"imgur"`
-	Line      Line      `toml:"line"`
-}
-
-type Replicate struct {
-	URL      string `toml:"url"`
-	Token    string `toml:"token"`
-	Version  string `toml:"version"`
-	Callback string `toml:"callback"`
-}
-
-type Imgur struct {
-	URL string `toml:"url"`
-	ID  string `toml:"id"`
-}
-
-type Line struct {
-	Secret string `toml:"secret"`
-	Token  string `toml:"token"`
-}
-
-var cfg config
-
-func init() {
-	viper.SetConfigName("config")
-	viper.SetConfigType("toml")
-	viper.AddConfigPath(".")
-	if err := viper.ReadInConfig(); err != nil {
-		log.Fatal("read config: ", err)
-	}
-	if err := viper.Unmarshal(&cfg); err != nil {
-		log.Fatal("unmarshal config: ", err)
-	}
-}
-
 func main() {
+	cfg := config.LoadConfig()
 	imgurer := imgur.NewImgur(
 		cfg.Imgur.URL,
 		cfg.Imgur.ID,
