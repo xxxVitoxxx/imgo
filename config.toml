@@ -22,3 +22,9 @@ db = "0"
 user = "guest"
 password = "guest"
 address = "localhost"
+
+[bucket]
+id = "{aws access id}"
+secret = "{aws secret key}"
+name = "{s3 bucket name}"
+region = "{region}"
