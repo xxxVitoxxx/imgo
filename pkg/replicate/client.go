@@ -8,15 +8,23 @@ import (
 	"io"
 	"net/http"
 	"time"
+
+	"github.com/rabbitmq/amqp091-go"
+	"github.com/xxxVitoxxx/imgo/pkg/rabbitmq"
 )
 
 type Client struct {
-	url, token, version, callbackURL string
+	url         string
+	token       string
+	version     string
+	callbackURL string
+	mq          *rabbitmq.MessageQueue
+	queue       amqp091.Queue
 }
 
 // NewClient return a new client instance
-func NewClient(url, token, version, callbackURL string) *Client {
-	return &Client{url, token, version, callbackURL}
+func NewClient(url, token, version, callbackURL string, mq *rabbitmq.MessageQueue, queue amqp091.Queue) *Client {
+	return &Client{url, token, version, callbackURL, mq, queue}
 }
 
 // Input depends on what model you are running

@@ -26,7 +26,7 @@ func NewLineBot(secret, token string, img imgur.Imgur, rep replicate.Replicate) 
 	return &lineBot{bot, img, rep}, err
 }
 
-func (b *lineBot) replyText(replyToken, text string) error {
+func (b *lineBot) ReplyText(replyToken, text string) error {
 	replyCall := b.bot.ReplyMessage(replyToken, linebot.NewTextMessage(text))
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
@@ -38,7 +38,7 @@ func (b *lineBot) replyText(replyToken, text string) error {
 	return nil
 }
 
-func (b *lineBot) replyImage(replyToken, imageURL string) error {
+func (b *lineBot) ReplyImage(replyToken, imageURL string) error {
 	if imageURL == "" {
 		return errors.New("image url is empty")
 	}

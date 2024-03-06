@@ -10,6 +10,8 @@ type config struct {
 	Replicate Replicate `toml:"replicate"`
 	Imgur     Imgur     `toml:"imgur"`
 	Line      Line      `toml:"line"`
+	RabbitMQ  RabbitMQ  `toml:"rabbitmq"`
+	Redis     Redis     `toml:"redis"`
 }
 
 type Replicate struct {
@@ -27,6 +29,19 @@ type Imgur struct {
 type Line struct {
 	Secret string `toml:"secret"`
 	Token  string `toml:"token"`
+}
+
+type RabbitMQ struct {
+	User     string `toml:"user"`
+	Password string `toml:"password"`
+	Address  string `toml:"address"`
+}
+
+type Redis struct {
+	User     string `toml:"user"`
+	Password string `toml:"password"`
+	Address  string `toml:"address"`
+	DB       string `toml:"db"`
 }
 
 func loadConfig() (cfg config) {
