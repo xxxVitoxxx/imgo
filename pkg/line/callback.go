@@ -42,7 +42,7 @@ func (b *lineBot) Callback(c *gin.Context) {
 				imgURL, err := b.imgByteToURL(eventType.ID)
 				if err != nil {
 					log.Println("image byte to URL err: ", err)
-					if err := b.replyText(event.ReplyToken, "process fail"); err != nil {
+					if err := b.ReplyText(event.ReplyToken, "process fail"); err != nil {
 						log.Println(err)
 					}
 
@@ -58,7 +58,7 @@ func (b *lineBot) Callback(c *gin.Context) {
 						select {
 						case err := <-errCh:
 							log.Println("restoration err: ", err)
-							if err := b.replyText(event.ReplyToken, "process fail"); err != nil {
+							if err := b.ReplyText(event.ReplyToken, "process fail"); err != nil {
 								log.Println(err)
 							}
 							return
@@ -66,7 +66,7 @@ func (b *lineBot) Callback(c *gin.Context) {
 							return
 						case <-replyTokenTime:
 							log.Printf("user: %s processing time exceeded\n", event.Source.UserID)
-							if err := b.replyText(event.ReplyToken, "processing time exceeded"); err != nil {
+							if err := b.ReplyText(event.ReplyToken, "processing time exceeded"); err != nil {
 								log.Println(err)
 							}
 							return
@@ -107,7 +107,7 @@ func (b *lineBot) restorationPhoto(imgURL, replyToken string, finishCh chan<- st
 	prediction, err := b.CreatePrediction(input)
 	if err != nil {
 		log.Println("create prediction err: ", err)
-		if err := b.replyText(replyToken, "process fail"); err != nil {
+		if err := b.ReplyText(replyToken, "process fail"); err != nil {
 			log.Println(err)
 		}
 		errCh <- err
@@ -137,7 +137,7 @@ LOOP:
 			errCh <- err
 		}
 
-		if err := b.replyImage(replyToken, pd.Output); err != nil {
+		if err := b.ReplyImage(replyToken, pd.Output); err != nil {
 			log.Println(err)
 			errCh <- err
 		}

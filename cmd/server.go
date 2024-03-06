@@ -15,6 +15,7 @@ import (
 	"github.com/xxxVitoxxx/imgo/internal/config"
 	"github.com/xxxVitoxxx/imgo/pkg/imgur"
 	"github.com/xxxVitoxxx/imgo/pkg/line"
+	"github.com/xxxVitoxxx/imgo/pkg/rabbitmq"
 	"github.com/xxxVitoxxx/imgo/pkg/replicate"
 )
 
@@ -34,11 +35,27 @@ improve the clarity of the photo through the AI model.`,
 			cfg.Imgur.ID,
 		)
 
+		mq, err := rabbitmq.NewMessageQueue(
+			cfg.RabbitMQ.User,
+			cfg.RabbitMQ.Password,
+			cfg.RabbitMQ.Address,
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		replicateQueue, err := mq.DeclareReplicateQueue()
+		if err != nil {
+			log.Fatal(err)
+		}
+
 		replicator := replicate.NewClient(
 			cfg.Replicate.URL,
 			cfg.Replicate.Token,
 			cfg.Replicate.Version,
 			cfg.Replicate.Callback,
+			mq,
+			replicateQueue,
 		)
 
 		bot, err := line.NewLineBot(

@@ -5,6 +5,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
+	"github.com/rabbitmq/amqp091-go"
 	"github.com/stretchr/testify/assert"
 	"github.com/xxxVitoxxx/imgo/pkg/replicate"
 )
@@ -34,7 +35,7 @@ func TestCreatePrediction(t *testing.T) {
 	}))
 	defer ts.Close()
 
-	c := replicate.NewClient(ts.URL, "", "", "")
+	c := replicate.NewClient(ts.URL, "", "", "", nil, amqp091.Queue{})
 	input := replicate.Input{
 		"image": "https://cdn.hk01.com/di/media/images/dw/20200805/367761876806930432.jpeg/LypEctZ0sCisiMo4oUbMTtpO8bn7a6xHt7nyrre58q4?v=w1920",
 	}
@@ -69,7 +70,7 @@ func TestGetPrediction(t *testing.T) {
 	}))
 	defer ts.Close()
 
-	c := replicate.NewClient(ts.URL, "", "", "")
+	c := replicate.NewClient(ts.URL, "", "", "", nil, amqp091.Queue{})
 	_, err := c.GetPrediction("76d7fp6tifd6pprabbw6gtjnzy")
 	assert.NoError(t, err)
 }
