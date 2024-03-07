@@ -7,23 +7,34 @@ import (
 	"time"
 
 	"github.com/line/line-bot-sdk-go/v7/linebot"
+	"github.com/xxxVitoxxx/imgo/pkg/bucket"
 	"github.com/xxxVitoxxx/imgo/pkg/imgur"
 	"github.com/xxxVitoxxx/imgo/pkg/replicate"
+	"github.com/xxxVitoxxx/imgo/pkg/storage"
 )
 
 type lineBot struct {
 	bot *linebot.Client
 	imgur.Imgur
 	replicate.Replicate
+	bucket *bucket.Bucket
+	redis  *storage.Redis
 }
 
 // NewLineBot return a new lineBot instance
-func NewLineBot(secret, token string, img imgur.Imgur, rep replicate.Replicate) (*lineBot, error) {
+func NewLineBot(
+	secret string,
+	token string,
+	img imgur.Imgur,
+	rep replicate.Replicate,
+	bucket *bucket.Bucket,
+	redis *storage.Redis,
+) (*lineBot, error) {
 	bot, err := linebot.New(secret, token)
 	if err != nil {
 		return &lineBot{}, err
 	}
-	return &lineBot{bot, img, rep}, err
+	return &lineBot{bot, img, rep, bucket, redis}, err
 }
 
 func (b *lineBot) ReplyText(replyToken, text string) error {

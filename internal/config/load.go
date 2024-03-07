@@ -12,6 +12,7 @@ type config struct {
 	Line      Line      `toml:"line"`
 	RabbitMQ  RabbitMQ  `toml:"rabbitmq"`
 	Redis     Redis     `toml:"redis"`
+	Bucket    Bucket    `toml:"bucket"`
 }
 
 type Replicate struct {
@@ -42,6 +43,13 @@ type Redis struct {
 	Password string `toml:"password"`
 	Address  string `toml:"address"`
 	DB       string `toml:"db"`
+}
+
+type Bucket struct {
+	ID     string `toml:"id"`
+	Secret string `toml:"secret"`
+	Name   string `toml:"name"`
+	Region string `toml:"region"`
 }
 
 func loadConfig() (cfg config) {
