@@ -9,6 +9,7 @@ Imgo is a tool that can enhance the clarity of human faces. It combines the [Cod
 It's goal is to repair old or blurry photos through simple methods. It uses the LINE platform to allow users to easily interact with the AI model.  
 
 ![image](./docs/static/image/example.jpeg)
+![image](./docs/static/image/example2.jpeg)
 
 Imgo offers a simple CLI that helps you start server and create consumer. In the next sections we will learn more about how to get started.  
 
