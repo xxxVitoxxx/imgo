@@ -52,7 +52,7 @@ func (b *lineBot) Callback(c *gin.Context) {
 					return
 				}
 
-				prediction, err := b.CreatePrediction(replicate.Input{"imgae": imgURL})
+				prediction, err := b.CreatePrediction(replicate.Input{"image": imgURL})
 				if err != nil {
 					log.Println(err)
 					return
