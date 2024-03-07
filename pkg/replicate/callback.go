@@ -24,13 +24,6 @@ var (
 	PredictionCancel  Status = "canceled"
 )
 
-var PredStatusCh = make(chan PredictionStatus)
-
-type PredictionStatus struct {
-	ID     string
-	Status Status
-}
-
 type Prediction struct {
 	ID     string
 	URL    string

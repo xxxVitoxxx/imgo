@@ -12,7 +12,6 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/xxxVitoxxx/imgo/internal/config"
 	"github.com/xxxVitoxxx/imgo/pkg/bucket"
-	"github.com/xxxVitoxxx/imgo/pkg/imgur"
 	"github.com/xxxVitoxxx/imgo/pkg/line"
 	"github.com/xxxVitoxxx/imgo/pkg/rabbitmq"
 	"github.com/xxxVitoxxx/imgo/pkg/replicate"
@@ -48,11 +47,6 @@ var consumerCmd = &cobra.Command{
 			log.Fatal(err)
 		}
 
-		imgurer := imgur.NewImgur(
-			cfg.Imgur.URL,
-			cfg.Imgur.ID,
-		)
-
 		replicator := replicate.NewClient(
 			cfg.Replicate.URL,
 			cfg.Replicate.Token,
@@ -85,7 +79,6 @@ var consumerCmd = &cobra.Command{
 		bot, err := line.NewLineBot(
 			cfg.Line.Secret,
 			cfg.Line.Token,
-			imgurer,
 			replicator,
 			bucket,
 			redis,

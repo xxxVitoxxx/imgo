@@ -14,7 +14,6 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/xxxVitoxxx/imgo/internal/config"
 	"github.com/xxxVitoxxx/imgo/pkg/bucket"
-	"github.com/xxxVitoxxx/imgo/pkg/imgur"
 	"github.com/xxxVitoxxx/imgo/pkg/line"
 	"github.com/xxxVitoxxx/imgo/pkg/rabbitmq"
 	"github.com/xxxVitoxxx/imgo/pkg/replicate"
@@ -32,10 +31,6 @@ var serverCmd = &cobra.Command{
 improve the clarity of the photo through the AI model.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		cfg := config.LoadConfig()
-		imgurer := imgur.NewImgur(
-			cfg.Imgur.URL,
-			cfg.Imgur.ID,
-		)
 
 		mq, err := rabbitmq.NewMessageQueue(
 			cfg.RabbitMQ.User,
@@ -83,7 +78,6 @@ improve the clarity of the photo through the AI model.`,
 		bot, err := line.NewLineBot(
 			cfg.Line.Secret,
 			cfg.Line.Token,
-			imgurer,
 			replicator,
 			bucket,
 			redis,
