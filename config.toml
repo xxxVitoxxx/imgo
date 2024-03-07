@@ -4,10 +4,6 @@ token = "{your token}"
 version = "{model version}"
 callback = "{server URL}/replicate/callback"
 
-[imgur]
-url = "https://api.imgur.com/3/image"
-id = "{your client ID}"
-
 [line]
 secret = "{your secret}"
 token = "{your token}"
