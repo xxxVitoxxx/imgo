@@ -1,6 +1,7 @@
 package bucket
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"io"
@@ -39,10 +40,13 @@ func NewBucket(id, secret, bucket, region string) (*Bucket, error) {
 
 // PutImage adds an image to a bucket.
 func (b *Bucket) PutImage(filename string, content io.ReadCloser) error {
+	buf := new(bytes.Buffer)
+	buf.ReadFrom(content)
+
 	input := new(s3.PutObjectInput)
 	input.SetBucket(b.bucket)
 	input.SetKey(fmt.Sprintf("imgo/%s.png", filename))
-	input.SetBody(aws.ReadSeekCloser(content))
+	input.SetBody(bytes.NewReader(buf.Bytes()))
 
 	_, err := b.s3Srv.PutObject(input)
 	if err != nil {
