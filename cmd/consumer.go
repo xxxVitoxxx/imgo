@@ -11,6 +11,7 @@ import (
 
 	"github.com/spf13/cobra"
 	"github.com/xxxVitoxxx/imgo/internal/config"
+	"github.com/xxxVitoxxx/imgo/pkg/bucket"
 	"github.com/xxxVitoxxx/imgo/pkg/imgur"
 	"github.com/xxxVitoxxx/imgo/pkg/line"
 	"github.com/xxxVitoxxx/imgo/pkg/rabbitmq"
@@ -71,11 +72,23 @@ var consumerCmd = &cobra.Command{
 			log.Fatal(err)
 		}
 
+		bucket, err := bucket.NewBucket(
+			cfg.Bucket.ID,
+			cfg.Bucket.Secret,
+			cfg.Bucket.Name,
+			cfg.Bucket.Region,
+		)
+		if err != nil {
+			log.Fatal(err)
+		}
+
 		bot, err := line.NewLineBot(
 			cfg.Line.Secret,
 			cfg.Line.Token,
 			imgurer,
 			replicator,
+			bucket,
+			redis,
 		)
 		if err != nil {
 			log.Fatal("new bot: ", err)
